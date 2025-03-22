@@ -1,0 +1,40 @@
+version: "3.6"
+
+services:
+  surfacing-backend:
+    image: ${IMAGE}
+    networks:
+      - swarm-overlay-net
+    env_file:
+      - .env
+    deploy:
+      replicas: 1
+      resources:
+        limits: 
+          cpus: '0.5'
+          memory: 256m
+        reservations:
+          cpus: '0.25'
+          memory: 128m
+      restart_policy: 
+        condition: on-failure
+      labels:
+        - traefik.enable=true
+        - traefik.docker.lbswarm=true
+        - traefik.http.services.surfacing-backend-${BRANCH}.loadbalancer.server.port=3000
+
+        #http
+        - traefik.http.routers.surfacing-backend-${BRANCH}-http.entrypoints=http
+        - traefik.http.routers.surfacing-backend-${BRANCH}-http.middlewares=surfacing-backend-${BRANCH}-redirectscheme@docker
+        - traefik.http.routers.surfacing-backend-${BRANCH}-http.rule=Host(`api.smart.inamawangi.com`)
+
+        # https
+        - traefik.http.routers.surfacing-backend-${BRANCH}-https.entrypoints=https
+        - traefik.http.routers.surfacing-backend-${BRANCH}-https.rule=Host(`api.smart.inamawangi.com`)
+        - traefik.http.routers.surfacing-backend-${BRANCH}-https.tls=true
+        - traefik.http.routers.surfacing-backend-${BRANCH}-https.tls.certresolver=letsencrypt
+
+        - traefik.http.middlewares.surfacing-backend-${BRANCH}-redirectscheme.redirectscheme.scheme=https
+networks:
+  swarm-overlay-net:
+    external: true

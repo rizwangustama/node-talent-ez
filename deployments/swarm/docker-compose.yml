@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: deployments/swarm/dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+    depends_on:
+      - db
+      - redis
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://localhost:5432/postgres
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    command: ["yarn", "run", "api:dev"]
+
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=rizwangustama
+      - POSTGRES_PASSWORD=rizwangustama
+      - POSTGRES_DB=talent_ez
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  db-data:
+  redis-data:

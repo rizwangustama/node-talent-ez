@@ -1,0 +1,21 @@
+# Gunakan base image Node.js versi 23 dengan Alpine yang ringan
+FROM node:23.7.0
+
+# Set working directory di dalam container
+WORKDIR /app
+
+# Salin package.json dan package-lock.json
+COPY ../../package*.json ./
+COPY ../../yarn.lock ./
+
+# Install dependencies
+RUN yarn install
+
+# Salin semua file proyek ke dalam container
+COPY ../../ ./
+
+# Expose port yang digunakan oleh aplikasi (sesuaikan dengan port aplikasi Node.js)
+EXPOSE 8000
+
+# Jalankan aplikasi dalam mode development
+CMD ["yarn", "run", "api:dev"]

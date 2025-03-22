@@ -1,0 +1,58 @@
+{
+  "server": {
+    "name": "Talent EZ",
+    "version": "1.0.1",
+    "database": "talent_ez",
+    "sync_db": true,
+    "port": 8000
+  },
+  "keys": {
+    "secret": ""
+  },
+  "jwt": {
+    "key": {
+      "private": "",
+      "public": "",
+      "refresh": ""
+    },
+    "options": {
+      "create": {
+        "issuer": "node-talent-ez",
+        "subject": "noreply@first-routes.com",
+        "audience": "http://localhost/",
+        "expiresIn": "12h",
+        "algorithm": "RS256"
+      },
+      "verify": {
+        "issuer": "node-talent-ez",
+        "subject": "noreply@first-routes.com",
+        "audience": "http://localhost/",
+        "expiresIn": "12h",
+        "algorithm": [
+          "RS256"
+        ]
+      }
+    }
+  },
+  "databases": [
+    {
+      // "host": "localhost",
+      "host": "db",
+      "db": "talent_ez",
+      "username": "rizwangustama",
+      "password": "rizwangustama",
+      "port": 5432,
+      "dialect": "postgres"
+    }
+  ],
+  "redis": {
+    "host": "localhost",
+    "username": "root",
+    "port": 3306,
+    "password": "root"
+  },
+  "services": {
+  },
+  "jobs": {
+  }
+}

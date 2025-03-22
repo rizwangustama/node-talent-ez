@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: talentez-backend
+  namespace: talentez-prd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: talentez-backend
+  template:
+    metadata:
+      labels:
+        app: talentez-backend
+    spec:
+      containers:
+        - name: backend
+          image: rizwangustama/talentez-backend-dev:v1
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              value: "postgres://user:password@postgres:5432/talentez"
+            - name: REDIS_HOST
+              value: "redis-master.talentez-prd.svc.cluster.local"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: talentez-backend-service
+  namespace: talentez-prd
+spec:
+  selector:
+    app: talentez-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP

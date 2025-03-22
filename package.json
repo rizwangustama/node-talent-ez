@@ -1,0 +1,55 @@
+{
+  "name": "talent-ez",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cmd/api/main.js",
+  "scripts": {
+    "job:watch": "nodemon scripts/dev.scheduler",
+    "job:clean": "rm -f cmd/scheduler/main-compiled.js",
+    "job:build": "npm run job:clean && babel cmd/scheduler/main.js --out-file cmd/scheduler/main-compiled.js",
+    "job:staging": "npm run job:build && NODE_ENV=staging node scripts/prod.scheduler",
+    "api:watch": "nodemon scripts/dev.api",
+    "api:clean": "rm -f cmd/api/main-compiled.js",
+    "api:build": "npm run api:clean && babel cmd/api/main.js --out-file cmd/api/main-compiled.js",
+    "api:staging": "npm run api:build && NODE_ENV=staging node scripts/prod.api",
+    "api:dev": "NODE_OPTIONS='--experimental-specifier-resolution=node' node -r @babel/register scripts/dev.api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/firstroutes/node-talent-ez.git"
+  },
+  "author": "First Routes",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/firstroutes/node-talent-ez#readme",
+  "dependencies": {
+    "@joi/date": "^2.1.1",
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "config": "^3.3.12",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.46",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.1",
+    "qrcode": "^1.5.4",
+    "sequelize": "^6.37.5",
+    "uuid": "^11.0.5",
+    "winston": "^3.17.0",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.0",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/register": "^7.25.9",
+    "nodemon": "^3.1.9"
+  }
+}
