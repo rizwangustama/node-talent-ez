@@ -7,6 +7,7 @@ const database = (db) => {
 	if (database.length == 0) {
 		throw new Error(`Database ${db} not found`)
 	}
+
 	database = database[0]
 	const connection = new Sequelize(
 		database.db,
@@ -17,6 +18,15 @@ const database = (db) => {
 			port: database.port,
 			dialect: database.dialect,
 			logging: true,
+			// add
+			// ssl: true,
+			dialectOptions: {
+				ssl: {
+					require: true,
+					rejectUnauthorized: false, // Bypass self-signed SSL
+				},
+			},
+			// add
 			createdAt: 'created_at',
 			updatedAt: 'updated_at',
 			deletedAt: 'deleted_at',

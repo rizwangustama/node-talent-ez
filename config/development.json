@@ -2,7 +2,7 @@
   "server": {
     "name": "Talent EZ",
     "version": "1.0.1",
-    "database": "talent_ez",
+    "database": "talentez",
     "sync_db": true,
     "port": 8000
   },
@@ -36,11 +36,11 @@
   },
   "databases": [
     {
-      // "host": "localhost",
-      "host": "db",
-      "db": "talent_ez",
-      "username": "rizwangustama",
-      "password": "rizwangustama",
+      "host": "ep-damp-butterfly-a1z93id7-pooler.ap-southeast-1.aws.neon.tech",
+      // "host": "db",
+      "db": "talentez",
+      "username": "admin",
+      "password": "npg_hQNDYvSu9GW7",
       "port": 5432,
       "dialect": "postgres"
     }
