@@ -11,9 +11,11 @@ backend:
     path: ./
     scripts:
         deploy:
-            - npm install
+            - yarn install
+            - yarn run api:dev
         local:
-            - npm install
+            - yarn install
+            - yarn run api:dev
 name: node-talent-ez
 region: us-east-1
 yamlVersion: 2
