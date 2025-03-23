@@ -12,7 +12,6 @@ backend:
     scripts:
         deploy:
             - npm install
-            - npm run api:dev
             - npm run api:build 
         local:
             - npm install

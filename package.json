@@ -22,6 +22,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/firstroutes/node-talent-ez#readme",
   "dependencies": {
+    "@genezio/types": "^1.0.20",
     "@joi/date": "^2.1.1",
     "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",

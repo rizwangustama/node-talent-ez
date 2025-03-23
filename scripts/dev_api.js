@@ -4,9 +4,18 @@ require('@babel/polyfill')
 const main = require('../cmd/api/main');
 
 module.exports.handler = async () => {
-  await main();
-  return {
-    statusCode: 200,
-    body: "Server running successfully!",
-  };
+  try {
+    console.log("🚀 Starting API...");
+    await main();
+    return {
+      statusCode: 200,
+      body: "Server running successfully!",
+    };
+  } catch (error) {
+    console.error("❌ Error in handler:", error);
+    return {
+      statusCode: 500,
+      body: "Internal Server Error",
+    };
+  }
 };
