@@ -1,13 +1,13 @@
 backend:
     functions:
-        - entry: scripts/dev.api.js
-          handler: app.handler
+        - entry: dev.api.js
+          handler: handler
           name: express
-          path: .
+          path: node-talent-ez/scripts
           type: httpServer
     language:
         name: js
-        runtime: nodejs20.x
+        runtime: nodejs23.x
     path: ./
     scripts:
         deploy:
