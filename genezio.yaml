@@ -1,7 +1,7 @@
 backend:
     functions:
-        - entry: node-talent-ez/scripts/dev.api.js
-          handler: handler
+        - entry: scripts/dev.api.js
+          handler: app.handler
           name: express
           path: .
           type: httpServer
