@@ -1,9 +1,9 @@
 backend:
     functions:
-        - entry: dev.api.js
+        - entry: dev_api.js
           handler: handler
           name: express
-          path: node-talent-ez/scripts
+          path: scripts
           type: httpServer
     language:
         name: js
@@ -11,11 +11,11 @@ backend:
     path: ./
     scripts:
         deploy:
-            - yarn install
-            - yarn run api:dev
+            - npm install
+            - npm run api:build 
         local:
-            - yarn install
-            - yarn run api:dev
+            - npm install
+            - npm run api:dev
 name: node-talent-ez
 region: us-east-1
 yamlVersion: 2
