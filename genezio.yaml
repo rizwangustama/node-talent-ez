@@ -1,21 +1,20 @@
+name: node-talent-ez
+region: us-east-1
+yamlVersion: 2
 backend:
     functions:
         - entry: dev_api.js
-          handler: handler
           name: express
           path: scripts
           type: httpServer
     language:
         name: js
         runtime: nodejs20.x
+        packageManager: npm
     path: ./
     scripts:
         deploy:
             - npm install
-            - npm run api:build 
+            - npm run api:build
         local:
-            - npm install
             - npm run api:dev
-name: node-talent-ez
-region: us-east-1
-yamlVersion: 2

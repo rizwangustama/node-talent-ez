@@ -4,18 +4,15 @@ require('@babel/polyfill')
 const main = require('../cmd/api/main');
 
 module.exports.handler = async () => {
-  try {
-    console.log("🚀 Starting API...");
-    await main();
-    return {
-      statusCode: 200,
-      body: "Server running successfully!",
-    };
-  } catch (error) {
-    console.error("❌ Error in handler:", error);
-    return {
-      statusCode: 500,
-      body: "Internal Server Error",
-    };
-  }
+  console.log("🚀 Starting API handler...");
+  await main();
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "API is running!" }),
+  };
 };
+
+// Jika ingin langsung jalan tanpa genezio:
+if (require.main === module) {
+  main();
+}

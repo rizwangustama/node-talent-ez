@@ -42,8 +42,7 @@
     "qrcode": "^1.5.4",
     "sequelize": "^6.37.5",
     "uuid": "^11.0.5",
-    "winston": "^3.17.0",
-    "zlib": "^1.0.5"
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
